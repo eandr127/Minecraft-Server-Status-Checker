@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>Minecraft Server Status Checker</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
+    <head>
+        <title>Minecraft Server Status Checker</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
 	
     <?php
 	
-		$ip = 'ryanscpu';
-		$customIP = $_GET['ip'];
-		if($customIP != null){
-		$ip = test_input($customIP);
-		}	
+	$ip = 'ryanscpu';
+	$customIP = $_GET['ip'];
+	if($customIP != null){
+            $ip = test_input($customIP);
+	}	
+        
         require __DIR__ . '/MinecraftQuery.class.php';
 
         $na = true;
@@ -29,13 +30,13 @@
             $na = false;
         }
 		
-		function test_input($data)
-		{
-			$data = trim($data);
-			$data = stripslashes($data);
-			$data = htmlspecialchars($data);
-			return $data;
-		}		
+	function test_input($data)
+	{
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+	}		
     ?>
     
     <body>       
@@ -48,11 +49,11 @@
         
         <m class = "small">
             <?php 
-				$motd = $Query->GetInfo()[ 'HostName' ];
-				$remove = "\n";
-				$motd = str_replace($remove, ' ', $motd);
-				$motd = preg_replace('/\xa7./','',$motd);
-				$motd = filter_var($motd,FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
+		$motd = $Query->GetInfo()[ 'HostName' ];
+		$remove = "\n";
+		$motd = str_replace($remove, ' ', $motd);
+		$motd = preg_replace('/\xa7./','',$motd);
+		$motd = filter_var($motd,FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
                 echo "MOTD: " . $motd;
             ?>
         </m>
